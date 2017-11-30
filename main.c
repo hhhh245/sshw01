@@ -48,7 +48,7 @@ int main(void)
     // }
     // Ready_print_queue();
     
-    RunScheduler();
+    //RunScheduler();
      //여기부터 추가
      //printf("test\n");
 }

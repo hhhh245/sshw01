@@ -11,16 +11,15 @@ void *child(void *arg) {
 }
 int 	thread_create(thread_t *thread, thread_attr_t *attr, void *(*start_routine) (void *), void *arg)
 {
-	pthread_t t;
 	WrapperArg w;
 	w.funcPtr = child;
 	w.funcArg = arg;
-	if(pthread_create(&t,NULL,WrapperFunc,&w)!=0){
+	if(pthread_create(thread,NULL,WrapperFunc,&w)!=0){
 		return 1;
 	}
 	printf("create complete\n");
 	sleep(2);
-	ReadyQinsert(t);
+	ReadyQinsert(thread);
 	return -1;
 }
 
@@ -121,7 +120,7 @@ void *WrapperFunc(void* arg){
 	void * ret;
 	sigset_t set;
 	int retSig;
-
+	printf("tid at sub thread : %u\n", pthread_self());   
 	sigemptyset(&set);
 	sigaddset(&set,SIGUSR1);
 	sigwait(&set,&retSig);

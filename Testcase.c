@@ -37,10 +37,11 @@ void Testcase(void)
     // Wait_print_queue();
 
      thread_create(&tid1, NULL, foo1, &arg1);
-     printf("%u",(unsigned int)tid1);
-  
+    printf("tid1 at main thread : %u\n", tid1);   
      thread_create(&tid2, NULL, foo2, &arg2);
+     printf("tid1 at main thread : %u\n", tid2);   
      thread_create(&tid3, NULL, foo3, &arg3);
+     printf("tid1 at main thread : %u\n", tid3);   
      //…
     //  printf("\n");
     //  Ready_print_queue();
